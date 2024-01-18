@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 97b31e815ed2b664d986e908cb445660
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - podloga: {fileID: 1893961960678876322, guid: 23e4851388ce8a849b833bfea3ccf5ce, type: 3}
+  - sciana: {fileID: 3753154165378811892, guid: d1c04c3338546624885d3b3d5d985f57, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
