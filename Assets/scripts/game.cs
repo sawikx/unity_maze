@@ -38,12 +38,19 @@ public class game : MonoBehaviour
         //postac.SetActive(true);
     }
     public void inputWartosc(string s)
-    {       
-        seed = int.Parse(s);
+    {
+        if (s != null)
+        {
+            seed = int.Parse(s);
+        }
+       
     }
     public void inputwilekosc(string s)
-    {       
-        wielkosc = int.Parse(s);
+    {
+        if (s != null)
+        {
+            wielkosc = int.Parse(s);
+        }
     }
     public void openStartMenu()
     {

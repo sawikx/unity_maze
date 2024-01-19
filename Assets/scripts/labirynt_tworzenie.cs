@@ -131,7 +131,8 @@ public class game_start : MonoBehaviour
             {        
                 int wybraniekierunku = rnd.Next(0, mozliwyKierunek.Count);
                 wall4 wybranypoku = pokoj[mozliwyPokoj[wybraniekierunku]];
-
+                int czykucanie =  rnd2.Next(0, 12);  //  1/6                 
+                int czyBezWall =  rnd2.Next(0, 20); //  1/20
                 liczenie++;
 
                 if (liczenie > najdalej)
@@ -140,25 +141,118 @@ public class game_start : MonoBehaviour
                     metax = wybranypoku.transform.position.x;
                     metaz = wybranypoku.transform.position.z;
                 }
-                switch (mozliwyKierunek[wybraniekierunku])
+
+                if (czyBezWall == 1)
                 {
-                    case 1:                                               
-                        wybranypoku.removeWall(0);
-                        pokoj[pokoj.IndexOf(wybranypoku)-Rozmiarplanszy].removeWall(1);
-                        break;
-                    case 2:                        
-                        wybranypoku.removeWall(1);
-                        pokoj[pokoj.IndexOf(wybranypoku)+Rozmiarplanszy].removeWall(0);
-                        break;
-                    case 3:                        
-                        wybranypoku.removeWall(3);
-                        pokoj[pokoj.IndexOf(wybranypoku) - 1].removeWall(2);
-                        break;
-                    case 4:                        
-                        wybranypoku.removeWall(2);
-                        pokoj[pokoj.IndexOf(wybranypoku) + 1].removeWall(3);
-                        break;
+                    for (int forBezWall=0;forBezWall <= mozliwyKierunek.Count-1;forBezWall++)
+                    {
+                        wybranypoku = pokoj[mozliwyPokoj[forBezWall]];
+                        switch (mozliwyKierunek[forBezWall])
+                        {
+                            case 1:                                
+                                    wybranypoku.removeWall(0);
+                                    pokoj[pokoj.IndexOf(wybranypoku) - Rozmiarplanszy].removeWall(1);  
+                                break;
+                            case 2:                                
+                                    wybranypoku.removeWall(1);
+                                    pokoj[pokoj.IndexOf(wybranypoku) + Rozmiarplanszy].removeWall(0);  
+                                break;
+                            case 3:                               
+                                    wybranypoku.removeWall(3);
+                                    pokoj[pokoj.IndexOf(wybranypoku) - 1].removeWall(2);
+                                break;
+                            case 4:                                
+                                    wybranypoku.removeWall(2);
+                                    pokoj[pokoj.IndexOf(wybranypoku) + 1].removeWall(3);
+                                break;
+                        }
+                    }
                 }
+                else
+                {
+                    switch (mozliwyKierunek[wybraniekierunku])
+                    {
+                        case 1:
+                            if (czykucanie == 0)// wall kucanie
+                            {
+                                wybranypoku.reziseWallCrouch(0);
+                                pokoj[pokoj.IndexOf(wybranypoku) - Rozmiarplanszy].reziseWallCrouch(1);
+
+                            }
+                            else if (czykucanie == 1)// wall skakanie
+                            {
+                                wybranypoku.reziseWallJump(0);
+                                pokoj[pokoj.IndexOf(wybranypoku) - Rozmiarplanszy].reziseWallJump(1);
+
+                            }
+                            else // usuniêcie wall
+                            {
+                                wybranypoku.removeWall(0);
+                                pokoj[pokoj.IndexOf(wybranypoku) - Rozmiarplanszy].removeWall(1);
+                            }
+
+                            break;
+                        case 2:
+                            if (czykucanie == 0)
+                            {
+                                wybranypoku.reziseWallCrouch(1);
+                                pokoj[pokoj.IndexOf(wybranypoku) + Rozmiarplanszy].reziseWallCrouch(0);
+                            }
+                            else if (czykucanie == 1)// wall skakanie
+                            {
+                                wybranypoku.reziseWallJump(1);
+                                pokoj[pokoj.IndexOf(wybranypoku) + Rozmiarplanszy].reziseWallJump(0);
+
+                            }
+                            else
+                            {
+                                wybranypoku.removeWall(1);
+                                pokoj[pokoj.IndexOf(wybranypoku) + Rozmiarplanszy].removeWall(0);
+                            }
+
+                            break;
+                        case 3:
+                            if (czykucanie == 0)
+                            {
+                                wybranypoku.reziseWallCrouch(3);
+                                pokoj[pokoj.IndexOf(wybranypoku) - 1].reziseWallCrouch(2);
+                            }
+                            else if (czykucanie == 1)// wall skakanie
+                            {
+                                wybranypoku.reziseWallJump(3);
+                                pokoj[pokoj.IndexOf(wybranypoku) - 1].reziseWallJump(2);
+
+                            }
+                            else
+                            {
+                                wybranypoku.removeWall(3);
+                                pokoj[pokoj.IndexOf(wybranypoku) - 1].removeWall(2);
+                            }
+
+                            break;
+                        case 4:
+                            if (czykucanie == 0)
+                            {
+                                wybranypoku.reziseWallCrouch(2);
+                                pokoj[pokoj.IndexOf(wybranypoku) + 1].reziseWallCrouch(3);
+                            }
+                            else if (czykucanie == 1)// wall skakanie
+                            {
+                                wybranypoku.reziseWallJump(2);
+                                pokoj[pokoj.IndexOf(wybranypoku) + 1].reziseWallJump(3);
+
+                            }
+                            else
+                            {
+                                wybranypoku.removeWall(2);
+                                pokoj[pokoj.IndexOf(wybranypoku) + 1].removeWall(3);
+
+                            }
+
+                            break;
+                    }
+                }
+
                 aktualnypokoj.Add(wybranypoku);
             }
             else

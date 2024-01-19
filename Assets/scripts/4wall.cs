@@ -15,7 +15,16 @@ public class wall4 : MonoBehaviour
     {
         sciany[wallRoRemove].gameObject.SetActive(false);
     }
-
+    public void reziseWallCrouch(int resize) //zmiana wilkoœci, gracz musi kucaæ by przeœæ dalej
+    {
+        sciany[resize].transform.position = new Vector3(sciany[resize].transform.position.x, 3.25f, sciany[resize].transform.position.z);
+        sciany[resize].transform.localScale = new Vector3(sciany[resize].transform.localScale.x, 3.5f, sciany[resize].transform.localScale.z);
+    }
+    public void reziseWallJump(int resize) //zmiana wilkoœci, gracz musi skakaæ by przeœæ dalej
+    {
+        sciany[resize].transform.position = new Vector3(sciany[resize].transform.position.x, 0.9f, sciany[resize].transform.position.z);
+        sciany[resize].transform.localScale = new Vector3(sciany[resize].transform.localScale.x, 1.75f, sciany[resize].transform.localScale.z);
+    }
     public void jakiMaterial(int wybranyMaterial)
     {
         for (int i = 0; i < sciany.Length; i++)
